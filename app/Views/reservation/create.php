@@ -14,7 +14,7 @@
 
     <hr>
 
-    <!-- ERROR JIKA JADWAL BENTROK -->
+<!-- ERROR JIKA JADWAL BENTROK -->
     <?php if (session()->getFlashdata('error')): ?>
 
         <div class="alert alert-danger">
@@ -25,12 +25,10 @@
 
     <?php endif; ?>
 
-
     <form method="post"
           action="/reservations/store">
 
-
-        <!-- FACILITY -->
+<!-- FACILITY -->
         <div class="mb-3">
 
             <label>ID Fasilitas</label>
@@ -51,8 +49,7 @@
 
         </div>
 
-
-        <!-- TUJUAN -->
+<!-- TUJUAN -->
         <div class="mb-3">
 
             <label>Tujuan Penggunaan</label>
@@ -64,8 +61,7 @@
 
         </div>
 
-
-        <!-- TANGGAL MULAI -->
+<!-- TANGGAL MULAI -->
         <div class="mb-3">
 
             <label>Tanggal Mulai</label>
@@ -78,8 +74,7 @@
 
         </div>
 
-
-        <!-- TANGGAL SELESAI -->
+<!-- TANGGAL SELESAI -->
         <div class="mb-3">
 
             <label>Tanggal Selesai</label>
@@ -92,8 +87,7 @@
 
         </div>
 
-
-        <!-- TOTAL HARGA -->
+<!-- TOTAL HARGA -->
         <div class="mb-3">
 
             <label>Total Harga</label>
@@ -107,14 +101,12 @@
 
         </div>
 
-
         <button type="submit"
                 class="btn btn-success">
 
             Simpan Reservasi
 
         </button>
-
 
         <a href="/user/facilities"
            class="btn btn-secondary">

@@ -27,8 +27,7 @@
           action="<?= base_url('payments/store') ?>"
           enctype="multipart/form-data">
 
-        <!-- PILIH RESERVASI -->
-
+<!-- PILIH RESERVASI -->
         <div class="mb-3">
 
             <label>Pilih Reservasi</label>
@@ -52,8 +51,7 @@
         </div>
 
 
-        <!-- METODE PEMBAYARAN -->
-
+<!-- METODE PEMBAYARAN -->
         <div class="mb-3">
 
             <label>Metode Pembayaran</label>
@@ -70,8 +68,7 @@
         </div>
 
 
-        <!-- UPLOAD FILE -->
-
+<!-- UPLOAD FILE -->
         <div class="mb-3">
 
             <label>Upload Bukti Pembayaran</label>
@@ -92,8 +89,7 @@
     </form>
 
     <hr class="mt-5">
-    /*TABEL UNTUK DOWNLOAD INVOICE */
-
+<!-- TABEL UNTUK DOWNLOAD INVOICE -->
     <h3>Riwayat Pembayaran</h3>
 
     <table class="table table-bordered">
