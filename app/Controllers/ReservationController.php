@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ReservationModel;
+use App\Models\FacilityModel;
 
 class ReservationController extends BaseController
 {
@@ -221,19 +222,45 @@ public function myReservation()
 // =========================
 public function updateStatus($id, $status)
 {
-    // hanya admin
-
     if (session()->get('role') != 'admin') {
         return redirect()->to('/login');
     }
 
-    // update status reservation
+    $facilityModel = new FacilityModel();
 
+    // ambil data reservasi
+    $reservation = $this->reservationModel->find($id);
+
+    // update status reservasi
     $this->reservationModel->update($id, [
-
         'status' => $status
-
     ]);
+
+    /*
+    ========================================
+    UPDATE STATUS FASILITAS
+    ========================================
+    */
+
+    if ($status == 'Approved') {
+
+        $facilityModel->update(
+            $reservation['facility_id'],
+            [
+                'status' => 'Sedang Digunakan'
+            ]
+        );
+    }
+
+    if ($status == 'Checkout' || $status == 'Selesai') {
+
+        $facilityModel->update(
+            $reservation['facility_id'],
+            [
+                'status' => 'Tersedia'
+            ]
+        );
+    }
 
     return redirect()->to('/reservations');
 }
