@@ -29,7 +29,6 @@
 
 </a>
 
-
 <a href="/admin/report/export-excel?filter_type=<?= $filterType ?>&filter_value=<?= $filterValue ?>"
    class="btn btn-success">
 
@@ -44,7 +43,6 @@
 <hr>
 
 <!-- FILTER LAPORAN -->
-
 <div class="card p-4 mb-4">
 
     <h4>Filter Laporan</h4>
@@ -53,8 +51,7 @@
 
         <div class="row">
 
-            <!-- PILIH JENIS FILTER -->
-
+<!-- PILIH JENIS FILTER -->
             <div class="col-md-4 mb-3">
 
                 <label>Jenis Filter</label>
@@ -82,9 +79,7 @@
 
             </div>
 
-
-            <!-- VALUE FILTER -->
-
+<!-- VALUE FILTER -->
             <div class="col-md-4 mb-3">
 
                 <label>Nilai Filter</label>
@@ -96,9 +91,7 @@
 
             </div>
 
-
-            <!-- BUTTON -->
-
+<!-- BUTTON -->
             <div class="col-md-4 mb-3">
 
                 <label>&nbsp;</label>
@@ -117,13 +110,11 @@
 
 </div>
 
-
 <hr>
-
 
 <div class="row">
 
-    <!-- TOTAL USER -->
+<!-- TOTAL USER -->
     <div class="col-md-3 mb-3">
         <div class="card p-3 text-center">
             <h5>Total User</h5>
@@ -131,7 +122,7 @@
         </div>
     </div>
 
-    <!-- TOTAL FASILITAS -->
+<!-- TOTAL FASILITAS -->
     <div class="col-md-3 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Fasilitas</h5>
@@ -139,7 +130,7 @@
         </div>
     </div>
 
-    <!-- TOTAL RESERVASI -->
+<!-- TOTAL RESERVASI -->
     <div class="col-md-3 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Reservasi</h5>
@@ -147,7 +138,7 @@
         </div>
     </div>
 
-    <!-- PENDING -->
+<!-- PENDING -->
     <div class="col-md-3 mb-3">
         <div class="card p-3 text-center">
             <h5>Reservasi Pending</h5>
@@ -157,10 +148,9 @@
 
 </div>
 
-
 <div class="row">
 
-    <!-- APPROVED -->
+<!-- APPROVED -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Reservasi Approved</h5>
@@ -168,7 +158,7 @@
         </div>
     </div>
 
-    <!-- LUNAS -->
+<!-- LUNAS -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Pembayaran Lunas</h5>
@@ -176,7 +166,7 @@
         </div>
     </div>
 
-    <!-- DITOLAK -->
+<!-- DITOLAK -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Pembayaran Ditolak</h5>
@@ -186,9 +176,7 @@
 
 </div>
 
-
 <hr>
-
 
 <div class="row">
 

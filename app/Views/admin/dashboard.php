@@ -18,7 +18,7 @@
 
 <div class="row">
 
-    <!-- TOTAL USER -->
+<!-- TOTAL USER -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Total User</h5>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <!-- TOTAL FASILITAS -->
+<!-- TOTAL FASILITAS -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Fasilitas</h5>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <!-- TOTAL RESERVASI -->
+<!-- TOTAL RESERVASI -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Reservasi</h5>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <!-- TOTAL PEMBAYARAN -->
+<!-- TOTAL PEMBAYARAN -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Pembayaran</h5>
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <!-- TOTAL PENDAPATAN -->
+<!-- TOTAL PENDAPATAN -->
     <div class="col-md-4 mb-3">
         <div class="card p-3 text-center">
             <h5>Total Pendapatan</h5>
@@ -65,11 +65,9 @@
 <hr>
 
 <!-- GRAFIK -->
-
 <div class="row mt-4">
 
     <!-- GRAFIK RESERVASI -->
-
     <div class="col-md-6">
 
         <div class="card p-4">
@@ -83,8 +81,7 @@
     </div>
 
 
-    <!-- GRAFIK PENDAPATAN -->
-
+<!-- GRAFIK PENDAPATAN -->
     <div class="col-md-6">
 
         <div class="card p-4">

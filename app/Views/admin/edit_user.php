@@ -27,7 +27,6 @@
 
         </div>
 
-
         <div class="mb-3">
 
             <label>Email</label>
@@ -39,7 +38,6 @@
                    value="<?= $user['email'] ?>">
 
         </div>
-
 
         <div class="mb-3">
 
@@ -59,7 +57,6 @@
 
                 </option>
 
-
                 <option
                     value="user"
 
@@ -70,7 +67,6 @@
                     User
 
                 </option>
-
 
                 <option
                     value="guest"
@@ -86,7 +82,6 @@
             </select>
 
         </div>
-
 
         <button class="btn btn-primary">
 
