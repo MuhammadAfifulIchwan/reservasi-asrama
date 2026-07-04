@@ -6,8 +6,6 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'Home::index');
 
-
-
 // AUTH
 $routes->get('login', 'AuthController::login');
 $routes->post('login/process', 'AuthController::processLogin');
@@ -54,31 +52,18 @@ $routes->get('admin/report/export-excel', 'DashboardController::exportExcel');
 
 // REST API FACILITIES
 $routes->get('api/facilities', 'API\FacilityApiController::index');
-
 $routes->post('api/facilities', 'API\FacilityApiController::create');
-
 $routes->put('api/facilities/(:num)', 'API\FacilityApiController::update/$1');
-
 $routes->delete('api/facilities/(:num)', 'API\FacilityApiController::delete/$1');
 
 // Reservation API
-
 $routes->get('api/reservations', 'API\ReservationApiController::index');
-
 $routes->post('api/reservations', 'API\ReservationApiController::create');
-
 $routes->put('api/reservations/(:num)', 'API\ReservationApiController::update/$1');
-
 $routes->delete('api/reservations/(:num)', 'API\ReservationApiController::delete/$1');
 
-// ========================================
 // USER API
-// ========================================
-
 $routes->get('api/users', 'API\UserApiController::index');
-
 $routes->post('api/users', 'API\UserApiController::create');
-
 $routes->put('api/users/(:num)', 'API\UserApiController::update/$1');
-
 $routes->delete('api/users/(:num)', 'API\UserApiController::delete/$1');
