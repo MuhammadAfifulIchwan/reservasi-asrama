@@ -15,10 +15,10 @@ class PaymentController extends BaseController
         $this->paymentModel = new PaymentModel();
     }
 
-    // halaman pembayaran
+// halaman pembayaran
 public function index()
 {
-    // guest tidak boleh akses pembayaran
+// guest tidak boleh akses pembayaran
     if (session()->get('role') == 'guest') {
         return redirect()->to('/guest/dashboard');
     }
@@ -27,13 +27,7 @@ public function index()
 
     $paymentModel = new PaymentModel();
 
-
-    /*
-    =====================================
-    AMBIL RESERVASI USER YANG APPROVED
-    =====================================
-    */
-
+// AMBIL RESERVASI USER YANG APPROVED
     $reservations =
         $reservationModel
 
@@ -43,13 +37,7 @@ public function index()
 
             ->findAll();
 
-
-    /*
-    =====================================
-    FILTER YANG BELUM ADA PEMBAYARAN
-    =====================================
-    */
-
+// FILTER YANG BELUM ADA PEMBAYARAN
     $availableReservations = [];
 
 
@@ -63,8 +51,7 @@ public function index()
 
                 ->first();
 
-
-        // jika belum ada pembayaran
+// jika belum ada pembayaran
         if (!$existingPayment)
         {
             $availableReservations[] =
@@ -72,16 +59,10 @@ public function index()
         }
     }
 
-
     $data['reservations'] =
         $availableReservations;
 
-/*
-=====================================
-AMBIL RIWAYAT PEMBAYARAN USER
-=====================================
-*/
-
+// AMBIL RIWAYAT PEMBAYARAN USER
 $userPayments =
 
     $paymentModel
@@ -109,10 +90,10 @@ $data['payments'] =
     return view('payment/index', $data);
 }
 
-    // upload pembayaran
+// upload pembayaran
     public function store()
 {
-    // guest tidak boleh upload pembayaran
+// guest tidak boleh upload pembayaran
     if (session()->get('role') == 'guest') {
         return redirect()->to('/guest/dashboard');
     }
@@ -153,28 +134,22 @@ $data['payments'] =
     );
     }
 
-    // =========================
 // ADMIN LIHAT SEMUA PEMBAYARAN
-// =========================
-
 public function adminPayment()
 {
-    // hanya admin
 
+// hanya admin
     if (session()->get('role') != 'admin') {
         return redirect()->to('/login');
     }
 
-    /*
-    =====================================
-    JOIN 4 TABEL
-    payments
-    reservations
-    users
-    facilities
-    =====================================
-    */
-
+/*
+JOIN 4 TABEL
+payments
+reservations
+users
+facilities
+*/
     $payments =
 
         $this->paymentModel
@@ -208,23 +183,16 @@ public function adminPayment()
     return view('payment/admin_payment', $data);
 }
 
-// =========================
 // ADMIN UPDATE STATUS PEMBAYARAN
-// =========================
 public function updateStatus($id, $status)
 {
+
     // hanya admin boleh akses
     if (session()->get('role') != 'admin') {
         return redirect()->to('/login');
     }
 
-
-    /*
-    ============================
-    UPDATE STATUS PEMBAYARAN
-    ============================
-    */
-
+// UPDATE STATUS PEMBAYARAN
     $this->paymentModel->update($id, [
 
         'payment_status' => $status
@@ -232,30 +200,23 @@ public function updateStatus($id, $status)
     ]);
 
 
-    /*
-    ============================
-    JIKA PEMBAYARAN LUNAS
-    UPDATE STATUS RESERVASI
-    ============================
-    */
-
+/*
+JIKA PEMBAYARAN LUNAS
+UPDATE STATUS RESERVASI
+*/
     if ($status == 'Lunas')
     {
-        // ambil data payment
 
+// ambil data payment
         $payment =
             $this->paymentModel->find($id);
 
-
-        // model reservasi
-
+// model reservasi
         $reservationModel =
             new ReservationModel();
 
-
-        // update reservasi jadi Paid
+// update reservasi jadi Paid
 // update reservasi jadi Selesai
-
 $reservationModel->update(
     $payment['reservation_id'],
     [
@@ -267,23 +228,18 @@ $reservationModel->update(
     return redirect()->to('/admin/payments');
 }
 
-// =========================
 // DOWNLOAD INVOICE PDF USER
-// =========================
-
 public function downloadInvoice($id)
 {
+
     // hanya user login
     if (!session()->get('logged_in')) {
         return redirect()->to('/login');
     }
 
-    /*
-    =====================================
-    JOIN PAYMENT + RESERVATION + USER + FACILITY
-    =====================================
-    */
-
+/*
+JOIN PAYMENT + RESERVATION + USER + FACILITY
+*/
     $payment =
 
         $this->paymentModel
@@ -318,19 +274,13 @@ public function downloadInvoice($id)
             ->first();
 
 
-    // jika invoice tidak ditemukan
+// jika invoice tidak ditemukan
     if (!$payment) {
 
         return redirect()->to('/payments');
     }
 
-
-    /*
-    =====================================
-    HANYA YANG STATUS LUNAS
-    =====================================
-    */
-
+// HANYA YANG STATUS LUNAS
     if ($payment['payment_status'] != 'Lunas') {
 
         return redirect()->to('/payments')
@@ -340,13 +290,7 @@ public function downloadInvoice($id)
                          );
     }
 
-
-    /*
-    =====================================
-    TEMPLATE HTML PDF
-    =====================================
-    */
-
+// TEMPLATE HTML PDF
     $html = '
 
     <h2 style="text-align:center;">
@@ -417,13 +361,7 @@ public function downloadInvoice($id)
     </p>
     ';
 
-
-    /*
-    =====================================
-    GENERATE PDF
-    =====================================
-    */
-
+// GENERATE PDF
     $dompdf = new Dompdf();
 
     $dompdf->loadHtml($html);

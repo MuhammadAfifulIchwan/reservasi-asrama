@@ -15,26 +15,16 @@ class FacilityController extends BaseController
         $this->facilityModel = new FacilityModel();
     }
 
-    // menampilkan semua fasilitas
+// menampilkan semua fasilitas
 public function index()
 {
     $reservationModel = new ReservationModel();
 
-    /*
-    ====================================
-    AMBIL SEMUA FASILITAS
-    ====================================
-    */
-
+// AMBIL SEMUA FASILITAS
     $facilities =
         $this->facilityModel->findAll();
 
-    /*
-    ====================================
-    CEK APAKAH ADA RESERVASI AKTIF
-    ====================================
-    */
-
+// CEK APAKAH ADA RESERVASI AKTIF
     foreach ($facilities as &$facility)
     {
 $activeReservation =
@@ -56,10 +46,7 @@ $activeReservation =
 
         ->first();
 
-        /*
-        JIKA DIPAKAI
-        */
-
+// JIKA DIPAKAI
         if ($activeReservation)
         {
             $facility['occupancy_status'] =
@@ -93,13 +80,13 @@ $activeReservation =
     return view('facility/index', $data);
 }
 
-    // admin tambah fasilitas
+// admin tambah fasilitas
     public function create()
     {
         return view('facility/create');
     }
 
-    // simpan fasilitas
+// simpan fasilitas
     public function store()
     {
         $data = [
@@ -116,10 +103,8 @@ $activeReservation =
 
         return redirect()->to('/facilities');
     }
-    // =========================
-// FORM EDIT FASILITAS
-// =========================
 
+// FORM EDIT FASILITAS
 public function edit($id)
 {
     $data['facility'] =
@@ -127,10 +112,8 @@ public function edit($id)
 
     return view('facility/edit', $data);
 }
-// =========================
-// UPDATE FASILITAS
-// =========================
 
+// UPDATE FASILITAS
 public function update($id)
 {
     $data = [
@@ -162,10 +145,7 @@ public function update($id)
     return redirect()->to('/facilities');
 }
 
-// =========================
 // DELETE FASILITAS
-// =========================
-
 public function delete($id)
 {
     $this->facilityModel->delete($id);
@@ -173,34 +153,21 @@ public function delete($id)
     return redirect()->to('/facilities');
 }
 
-// =========================
 // USER LIHAT FASILITAS
-// =========================
 public function userFacilities()
 {
-    // hanya user
+// hanya user
     if (session()->get('role') != 'user') {
         return redirect()->to('/login');
     }
 
     $reservationModel = new ReservationModel();
 
-    /*
-    ===============================
-    AMBIL SEMUA FASILITAS
-    ===============================
-    */
-
+// AMBIL SEMUA FASILITAS
     $facilities =
         $this->facilityModel->findAll();
 
-
-    /*
-    ===============================
-    CEK RESERVASI AKTIF
-    ===============================
-    */
-
+// CEK RESERVASI AKTIF
     foreach ($facilities as &$facility)
     {
 $activeReservationCount =
@@ -220,10 +187,7 @@ $activeReservationCount =
 
         ->countAllResults();
 
-
-        /*
-        JIKA SEDANG DIPAKAI
-        */
+// JIKA SEDANG DIPAKAI
 if ($activeReservationCount >= $facility['capacity'])
 {
     $facility['occupancy_status'] =
