@@ -359,21 +359,11 @@ $filterType =
 $filterValue =
     $this->request->getGet('filter_value');
 
-/*
-========================================
-QUERY DASAR
-========================================
-*/
-
+// QUERY DASAR
 $reservationQuery =
     $reservationModel;
 
-/*
-========================================
-FILTER DATA
-========================================
-*/
-
+// FILTER DATA
 if ($filterType == 'daily' && !empty($filterValue)) {
 
     $reservationQuery =
@@ -472,7 +462,7 @@ if ($filterType == 'yearly' && !empty($filterValue)) {
     
 }
 
-/*eksport exel*/
+// eksport exel
 public function exportExcel()
 {
     if (session()->get('role') != 'admin') {
@@ -480,33 +470,19 @@ public function exportExcel()
     }
 
     $reservationModel = new ReservationModel();
-    /*
-========================================
-AMBIL FILTER DARI URL
-========================================
-*/
 
+// AMBIL FILTER DARI URL
 $filterType =
     $this->request->getGet('filter_type');
 
 $filterValue =
     $this->request->getGet('filter_value');
 
-/*
-========================================
-QUERY DASAR
-========================================
-*/
-
+// QUERY DASAR
 $reservationQuery =
     $reservationModel;
 
-/*
-========================================
-FILTER DATA
-========================================
-*/
-
+// FILTER DATA
 if ($filterType == 'daily' && !empty($filterValue)) {
 
     $reservationQuery =
