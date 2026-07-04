@@ -28,25 +28,20 @@ JOIN RESERVATION + USER + FACILITY
 */
     $reservations =
         $this->reservationModel
-
             ->select('
                 reservations.*,
                 users.name,
                 facilities.facility_name
             ')
-
             ->join(
                 'users',
                 'users.id = reservations.user_id'
             )
-
             ->join(
                 'facilities',
                 'facilities.id = reservations.facility_id'
             )
-
             ->findAll();
-
 
     $data['reservations'] =
         $reservations;
@@ -65,40 +60,30 @@ public function store()
 
 $facility_id =
     $this->request->getPost('facility_id');
-
-
-
     $start_date =
         $this->request->getPost('start_date');
-
     $end_date =
         $this->request->getPost('end_date');
 
 // CEK APAKAH ADA JADWAL BENTROK
 $existingReservation =
     $this->reservationModel
-
         ->where('facility_id', $facility_id)
 
 ->groupStart()
 
     ->where('status', 'Pending')
-
     ->orWhere('status', 'Approved')
 
 ->groupEnd()
 
         ->where('start_date <=', $end_date)
-
         ->where('end_date >=', $start_date)
-
         ->first();
 
 // jika bentrok → gagal simpan
     if ($existingReservation) {
-
         return redirect()
-
             ->back()
 
             ->with('error','FASILITAS SUDAH DIBOOKING PADA TANGGAL TERSEBUT, SILAHKAN PILIH FASILITAS KAMI YANG LAINNYA. TERIMAKASIH');
@@ -125,12 +110,9 @@ $number =
 
 $reservationCode =
     'RSV-' . $today . '-' . $number;
-
     $data = [
-
         'reservation_code' =>
     $reservationCode,
-
         'user_id' =>
             session()->get('id'),
 
@@ -154,7 +136,6 @@ $reservationCode =
     ];
 
     $this->reservationModel->insert($data);
-
 return redirect()->to('/my-reservation');
 }
 
@@ -168,7 +149,6 @@ public function myReservation()
 // JOIN DENGAN FACILITIES
     $reservations =
         $this->reservationModel
-
             ->select('
                 reservations.*,
                 facilities.facility_name
@@ -188,7 +168,6 @@ public function myReservation()
 
     $data['reservations'] =
         $reservations;
-
     return view('reservation/my_reservation', $data);
 }
 
@@ -198,7 +177,6 @@ public function updateStatus($id, $status)
     if (session()->get('role') != 'admin') {
         return redirect()->to('/login');
     }
-
     $facilityModel = new FacilityModel();
 
 // ambil data reservasi
@@ -211,7 +189,6 @@ public function updateStatus($id, $status)
 
 // UPDATE STATUS FASILITAS
     if ($status == 'Approved') {
-
         $facilityModel->update(
             $reservation['facility_id'],
             [
@@ -221,7 +198,6 @@ public function updateStatus($id, $status)
     }
 
     if ($status == 'Checkout' || $status == 'Selesai') {
-
         $facilityModel->update(
             $reservation['facility_id'],
             [
@@ -249,13 +225,9 @@ public function create($facility_id)
 
 // kirim ke view
     $data = [
-
         'facility_id' => $facility_id,
-
         'price' => $facility['price'],
-
         'category' => $facility['category']
-
     ];
 
     return view('reservation/create', $data);
