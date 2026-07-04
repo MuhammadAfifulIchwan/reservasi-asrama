@@ -13,19 +13,19 @@ class AuthController extends BaseController
         $this->userModel = new UserModel();
     }
 
-    // Menampilkan halaman login
+// Menampilkan halaman login
     public function login()
     {
         return view('auth/login');
     }
 
-    // Menampilkan halaman register
+// Menampilkan halaman register
     public function register()
     {
         return view('auth/register');
     }
 
-    // Proses simpan register
+// Proses simpan register
     public function processRegister()
     {
         $data = [
@@ -41,7 +41,7 @@ class AuthController extends BaseController
         return redirect()->to('/login');
     }
 
-    // Proses login
+// Proses login
     public function processLogin()
     {
         $email    = $this->request->getPost('email');
@@ -52,10 +52,10 @@ class AuthController extends BaseController
                      ->first();
 
         if ($user) {
-            // Verifikasi password
+// Verifikasi password
             if (password_verify($password, $user['password'])) {
 
-                // Set session
+// Set session
                 session()->set([
                     'id'        => $user['id'],
                     'name'      => $user['name'],
@@ -63,7 +63,7 @@ class AuthController extends BaseController
                     'logged_in' => true
                 ]);
 
-                // Redirect berdasarkan role
+// Redirect berdasarkan role
                 if ($user['role'] == 'admin') {
 
     return redirect()->to('/admin/dashboard');
@@ -82,11 +82,11 @@ elseif ($user['role'] == 'guest') {
             }
         }
 
-        // Jika login gagal
+// Jika login gagal
         return redirect()->back()->with('error', 'Email atau Password salah');
     }
 
-    // Logout
+// Logout
     public function logout()
     {
         session()->destroy();

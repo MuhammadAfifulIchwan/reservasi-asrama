@@ -14,8 +14,8 @@ class DashboardController extends BaseController
 {
     public function admin()
 {
-    // hanya admin
 
+// hanya admin
     if (session()->get('role') != 'admin') {
         return redirect()->to('/login');
     }
@@ -42,13 +42,8 @@ class DashboardController extends BaseController
         ->selectSum('total_price')
         ->where('status', 'Selesai')
         ->first()['total_price'] ?? 0;
-    
-    /*
-========================================
-GRAFIK JUMLAH RESERVASI PER BULAN
-========================================
-*/
 
+// GRAFIK JUMLAH RESERVASI PER BULAN
 $reservationChart =
     $reservationModel
         ->select("
@@ -61,12 +56,7 @@ $reservationChart =
 $data['reservationChart'] =
     $reservationChart;
 
-    /*
-========================================
-GRAFIK PENDAPATAN PER BULAN
-========================================
-*/
-
+// GRAFIK PENDAPATAN PER BULAN
 $revenueChart =
     $reservationModel
         ->select("
@@ -95,57 +85,32 @@ public function user()
     $userId =
         session()->get('id');
 
-    /*
-    ================================
-    TOTAL FASILITAS
-    ================================
-    */
-
+// TOTAL FASILITAS
     $data['totalFacilities'] =
         $facilityModel->countAll();
 
-    /*
-    ================================
-    RESERVASI AKTIF (APPROVED)
-    ================================
-    */
-
+// RESERVASI AKTIF (APPROVED)
     $data['activeReservations'] =
         $reservationModel
             ->where('user_id', $userId)
             ->where('status', 'Approved')
             ->countAllResults();
 
-    /*
-    ================================
-    MENUNGGU VERIFIKASI (PENDING)
-    ================================
-    */
-
+// MENUNGGU VERIFIKASI (PENDING)
     $data['pendingReservations'] =
         $reservationModel
             ->where('user_id', $userId)
             ->where('status', 'Pending')
             ->countAllResults();
 
-    /*
-    ================================
-    RESERVASI SELESAI
-    ================================
-    */
-
+// RESERVASI SELESAI
     $data['finishedReservations'] =
         $reservationModel
             ->where('user_id', $userId)
             ->where('status', 'Selesai')
             ->countAllResults();
 
-    /*
-    ================================
-    TOTAL PENGELUARAN
-    ================================
-    */
-
+// TOTAL PENGELUARAN
     $data['totalExpense'] =
         $reservationModel
             ->selectSum('total_price')
@@ -156,10 +121,7 @@ public function user()
     return view('dashboard/user', $data);
 }
 
-    // =========================
-    // ADMIN LIHAT DATA USER
-    // =========================
-
+// ADMIN LIHAT DATA USER
     public function users()
     {
         if (session()->get('role') != 'admin') {
@@ -182,10 +144,7 @@ public function user()
     return view('dashboard/guest');
 }
 
-// =========================
 // USER PROFILE
-// =========================
-
 public function profile()
 {
     if (!session()->get('logged_in')) {
@@ -195,10 +154,7 @@ public function profile()
     return view('dashboard/profile');
 }
 
-// =========================
 // ADMIN DELETE USER
-// =========================
-
 public function deleteUser($id)
 {
     // hanya admin boleh akses
@@ -214,10 +170,8 @@ public function deleteUser($id)
     return redirect()->to('/admin/users');
 }
 
-// =========================
-// ADMIN EDIT USER (FORM)
-// =========================
 
+// ADMIN EDIT USER (FORM)
 public function editUser($id)
 {
     // hanya admin boleh akses
@@ -233,11 +187,7 @@ public function editUser($id)
     return view('admin/edit_user', $data);
 }
 
-
-// =========================
 // ADMIN UPDATE USER
-// =========================
-
 public function updateUser($id)
 {
     // hanya admin boleh akses
@@ -264,10 +214,7 @@ public function updateUser($id)
     return redirect()->to('/admin/users');
 }
 
-// =========================
 // ADMIN LAPORAN
-// =========================
-
 public function report()
 {
     if (session()->get('role') != 'admin') {
@@ -279,36 +226,23 @@ public function report()
     $reservationModel = new ReservationModel();
     $paymentModel = new PaymentModel();
 
-    /*
-    ================================
-    AMBIL FILTER
-    ================================
-    */
-
+// AMBIL FILTER
     $filterType =
         $this->request->getGet('filter_type');
 
     $filterValue =
         $this->request->getGet('filter_value');
 
-    /*
-    ================================
-    QUERY DASAR
-    ================================
-    */
-
+// QUERY DASAR
     $reservationQuery =
         $reservationModel;
 
     $paymentQuery =
         $paymentModel;
 
-    /*
-    ================================
-    FILTER HARIAN / BULANAN / TAHUNAN
-    ================================
-    */
-
+/*
+FILTER HARIAN / BULANAN / TAHUNAN
+*/
     if ($filterType == 'daily' && !empty($filterValue)) {
 
         $reservationQuery =
@@ -342,12 +276,7 @@ public function report()
                 ->where("YEAR(created_at)", $filterValue);
     }
 
-    /*
-    ================================
-    DATA LAPORAN
-    ================================
-    */
-
+// DATA LAPORAN
     $data['totalUsers'] =
         $userModel->countAll();
 
@@ -357,60 +286,31 @@ public function report()
     $data['totalReservations'] =
         $reservationQuery->countAllResults(false);
 
-    /*
-================================
-RESERVASI PENDING
-================================
-*/
-
+// RESERVASI PENDING
 $data['pendingReservations'] =
     (new ReservationModel())
         ->where('status', 'Pending')
         ->countAllResults();
 
-
-/*
-================================
-RESERVASI APPROVED
-================================
-*/
-
+// RESERVASI APPROVED
 $data['approvedReservations'] =
     (new ReservationModel())
         ->where('status', 'Approved')
         ->countAllResults();
 
-
-/*
-================================
-PEMBAYARAN LUNAS
-================================
-*/
-
+// PEMBAYARAN LUNAS
 $data['paidPayments'] =
     $paymentQuery
         ->where('payment_status', 'Lunas')
         ->countAllResults(false);
 
-
-/*
-================================
-PEMBAYARAN DITOLAK
-================================
-*/
-
+// PEMBAYARAN DITOLAK
 $data['rejectedPayments'] =
     (new PaymentModel())
         ->where('payment_status', 'Ditolak')
         ->countAllResults();
 
-
-/*
-================================
-TOTAL PENDAPATAN
-================================
-*/
-
+// TOTAL PENDAPATAN
 $revenue =
     $reservationQuery
         ->where('status', 'Selesai')
@@ -420,19 +320,11 @@ $revenue =
 $data['totalRevenue'] =
     $revenue['total_price'] ?? 0;
 
-    /*
-    SIMPAN FILTER KE VIEW
-    */
-
+// SIMPAN FILTER KE VIEW
     $data['filterType'] = $filterType;
     $data['filterValue'] = $filterValue;
 
-    /*
-================================
-DETAIL TRANSAKSI RESERVASI
-================================
-*/
-
+// DETAIL TRANSAKSI RESERVASI
 $transactionList =
     $reservationModel
         ->select('
@@ -451,7 +343,7 @@ $data['transactions'] =
     return view('admin/report', $data);
 }
 
-/*eksport pdf*/
+// eksport pdf
 public function exportPdf()
 {
     if (session()->get('role') != 'admin') {
@@ -459,12 +351,8 @@ public function exportPdf()
     }
 
     $reservationModel = new ReservationModel();
-    /*
-========================================
-AMBIL FILTER DARI URL
-========================================
-*/
 
+// AMBIL FILTER DARI URL
 $filterType =
     $this->request->getGet('filter_type');
 
@@ -669,10 +557,7 @@ if ($filterType == 'yearly' && !empty($filterValue)) {
     $sheet->setCellValue('G1', 'Total Harga');
     $sheet->setCellValue('H1', 'Status');
 
-    /*
-    DATA
-    */
-
+// DATA
     $row = 2;
     $no = 1;
 
@@ -690,10 +575,7 @@ if ($filterType == 'yearly' && !empty($filterValue)) {
         $row++;
     }
 
-    /*
-    DOWNLOAD
-    */
-
+// DOWNLOAD
     $filename = "laporan_reservasi.xlsx";
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
