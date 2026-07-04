@@ -14,12 +14,9 @@ class ReservationApiController extends BaseController
         $this->reservationModel = new ReservationModel();
     }
 
-    /*
-    =====================================
-    GET ALL RESERVATIONS
-    =====================================
-    */
-
+/*
+GET ALL RESERVATIONS
+*/
     public function index()
     {
         $reservations = $this->reservationModel->findAll();
@@ -31,12 +28,9 @@ class ReservationApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    POST NEW RESERVATION
-    =====================================
-    */
-
+/*
+POST NEW RESERVATION
+*/
     public function create()
     {
         $data = [
@@ -74,12 +68,9 @@ class ReservationApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    UPDATE RESERVATION
-    =====================================
-    */
-
+/*
+UPDATE RESERVATION
+*/
     public function update($id = null)
     {
         $data = $this->request->getJSON(true);
@@ -92,12 +83,9 @@ class ReservationApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    DELETE RESERVATION
-    =====================================
-    */
-
+ /*
+DELETE RESERVATION
+*/
     public function delete($id = null)
     {
         $this->reservationModel->delete($id);

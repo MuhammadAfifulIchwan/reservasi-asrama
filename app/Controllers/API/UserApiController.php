@@ -14,13 +14,10 @@ class UserApiController extends BaseController
         $this->userModel = new UserModel();
     }
 
-    /*
-    =====================================
-    GET ALL USERS
-    GET /api/users
-    =====================================
-    */
-
+/*
+GET ALL USERS
+GET /api/users
+*/
     public function index()
     {
         $users = $this->userModel->findAll();
@@ -36,13 +33,10 @@ class UserApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    POST USER
-    POST /api/users
-    =====================================
-    */
-
+/*
+POST USER
+POST /api/users
+*/
     public function create()
     {
         $data = [
@@ -78,13 +72,10 @@ class UserApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    UPDATE USER
-    PUT /api/users/{id}
-    =====================================
-    */
-
+/*
+UPDATE USER
+PUT /api/users/{id}
+*/
     public function update($id = null)
     {
         $data = $this->request->getJSON(true);
@@ -109,13 +100,10 @@ class UserApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    DELETE USER
-    DELETE /api/users/{id}
-    =====================================
-    */
-
+/*
+DELETE USER
+DELETE /api/users/{id}
+*/
     public function delete($id = null)
     {
         $this->userModel->delete($id);

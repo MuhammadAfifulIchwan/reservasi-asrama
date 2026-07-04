@@ -5,7 +5,6 @@ namespace App\Controllers\API;
 use App\Controllers\BaseController;
 use App\Models\FacilityModel;
 
-
 class FacilityApiController extends BaseController
 {
     protected $facilityModel;
@@ -15,13 +14,10 @@ class FacilityApiController extends BaseController
         $this->facilityModel = new FacilityModel();
     }
 
-    /*
-    =====================================
-    GET ALL FACILITIES
-    GET /api/facilities
-    =====================================
-    */
-
+/*
+GET ALL FACILITIES
+GET /api/facilities
+*/
     public function index()
     {
         $facilities = $this->facilityModel->findAll();
@@ -36,14 +32,10 @@ class FacilityApiController extends BaseController
 
         ]);
     }
-
-    /*
-    =====================================
-    POST NEW FACILITY
-    POST /api/facilities
-    =====================================
-    */
-
+/*
+POST NEW FACILITY
+POST /api/facilities
+*/
     public function create()
     {
         $data = [
@@ -81,13 +73,10 @@ class FacilityApiController extends BaseController
         ]);
     }
 
-    /*
-    =====================================
-    UPDATE FACILITY
-    PUT /api/facilities/{id}
-    =====================================
-    */
-
+/*
+UPDATE FACILITY
+PUT /api/facilities/{id}
+*/
 public function update($id = null)
 {
     $data = $this->request->getJSON(true);
@@ -103,13 +92,10 @@ public function update($id = null)
     ]);
 }
 
-    /*
-    =====================================
-    DELETE FACILITY
-    DELETE /api/facilities/{id}
-    =====================================
-    */
-
+/*
+DELETE FACILITY
+DELETE /api/facilities/{id}
+*/
     public function delete($id = null)
     {
         $this->facilityModel->delete($id);
