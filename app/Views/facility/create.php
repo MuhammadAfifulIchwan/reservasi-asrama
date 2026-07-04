@@ -19,7 +19,6 @@
 
 </div>
 
-
 <div class="mb-3">
 
 <label>Nama Fasilitas</label>
@@ -29,7 +28,6 @@
        class="form-control">
 
 </div>
-
 
 <div class="mb-3">
 
@@ -41,7 +39,6 @@
 
 </div>
 
-
 <div class="mb-3">
 
 <label>Harga</label>
@@ -51,7 +48,6 @@
        class="form-control">
 
 </div>
-
 
 <div class="mb-3">
 
@@ -63,7 +59,6 @@
 
 </div>
 
-
 <div class="mb-3">
 
 <label>Deskripsi</label>
@@ -72,7 +67,6 @@
           class="form-control"></textarea>
 
 </div>
-
 
 <div class="mb-3">
 
@@ -103,13 +97,11 @@
 
 </div>
 
-
 <button class="btn btn-success">
 
     Simpan
 
 </button>
-
 
 <a href="/facilities"
    class="btn btn-secondary">

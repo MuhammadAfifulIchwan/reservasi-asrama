@@ -1,7 +1,6 @@
 <div class="row">
 
-    <!-- SIDEBAR -->
-
+<!-- SIDEBAR -->
     <div class="col-md-3">
 
         <div class="list-group">
@@ -45,6 +44,5 @@
 
     </div>
 
-    <!-- CONTENT -->
-
+<!-- CONTENT -->
     <div class="col-md-9">

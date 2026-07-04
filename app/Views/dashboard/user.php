@@ -16,8 +16,7 @@
 
 <div class="row">
 
-    <!-- TOTAL FASILITAS -->
-
+<!-- TOTAL FASILITAS -->
     <div class="col-md-4 mb-3">
 
         <div class="card text-center p-3">
@@ -30,9 +29,7 @@
 
     </div>
 
-
-    <!-- RESERVASI AKTIF -->
-
+<!-- RESERVASI AKTIF -->
     <div class="col-md-4 mb-3">
 
         <div class="card text-center p-3">
@@ -46,8 +43,7 @@
     </div>
 
 
-    <!-- MENUNGGU VERIFIKASI -->
-
+<!-- MENUNGGU VERIFIKASI -->
     <div class="col-md-4 mb-3">
 
         <div class="card text-center p-3">
@@ -60,9 +56,7 @@
 
     </div>
 
-
-    <!-- RESERVASI SELESAI -->
-
+<!-- RESERVASI SELESAI -->
     <div class="col-md-6 mb-3">
 
         <div class="card text-center p-3">
@@ -75,9 +69,7 @@
 
     </div>
 
-
-    <!-- TOTAL PENGELUARAN -->
-
+<!-- TOTAL PENGELUARAN -->
     <div class="col-md-6 mb-3">
 
         <div class="card text-center p-3">
@@ -96,9 +88,7 @@
 
 </div>
 
-
 <br>
-
 
 <div class="card p-4">
 

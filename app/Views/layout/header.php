@@ -10,14 +10,11 @@
 
     <title>Sistem Reservasi Asrama</title>
 
-   <!-- Bootstrap 5 CDN -->
-
+<!-- Bootstrap 5 CDN -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet">
 
-
 <!-- CHART JS -->
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
