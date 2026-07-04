@@ -14,21 +14,18 @@ class ReservationController extends BaseController
         $this->reservationModel = new ReservationModel();
     }
 
-    // halaman reservasi
+// halaman reservasi
 public function index()
 {
-    // guest tidak boleh akses
 
+// guest tidak boleh akses
     if (session()->get('role') == 'guest') {
         return redirect()->to('/guest/dashboard');
     }
 
-    /*
-    =====================================
-    JOIN RESERVATION + USER + FACILITY
-    =====================================
-    */
-
+/*
+JOIN RESERVATION + USER + FACILITY
+*/
     $reservations =
         $this->reservationModel
 
@@ -57,10 +54,11 @@ public function index()
     return view('reservation/index', $data);
 }
 
-    // simpan reservasi
+// simpan reservasi
 public function store()
 {
-    // guest tidak boleh membuat reservasi
+
+// guest tidak boleh membuat reservasi
     if (session()->get('role') == 'guest') {
         return redirect()->to('/guest/dashboard');
     }
@@ -76,13 +74,7 @@ $facility_id =
     $end_date =
         $this->request->getPost('end_date');
 
-
-    /*
-    =====================================
-    CEK APAKAH ADA JADWAL BENTROK
-    =====================================
-    */
-
+// CEK APAKAH ADA JADWAL BENTROK
 $existingReservation =
     $this->reservationModel
 
@@ -94,8 +86,6 @@ $existingReservation =
 
     ->orWhere('status', 'Approved')
 
-
-
 ->groupEnd()
 
         ->where('start_date <=', $end_date)
@@ -104,8 +94,7 @@ $existingReservation =
 
         ->first();
 
-
-    // jika bentrok → gagal simpan
+// jika bentrok → gagal simpan
     if ($existingReservation) {
 
         return redirect()
@@ -115,20 +104,14 @@ $existingReservation =
             ->with('error','FASILITAS SUDAH DIBOOKING PADA TANGGAL TERSEBUT, SILAHKAN PILIH FASILITAS KAMI YANG LAINNYA. TERIMAKASIH');
                 }
 
-
-    /*
-    =====================================
-    JIKA TIDAK BENTROK → SIMPAN
-    =====================================
-    */
-    /*
-====================================
+/*
+JIKA TIDAK BENTROK → SIMPAN
+*/
+/*
 GENERATE KODE RESERVASI OTOMATIS
 FORMAT:
 RSV-20260618-001
-====================================
 */
-
 $today =
     date('Ymd');
 
@@ -175,21 +158,14 @@ $reservationCode =
 return redirect()->to('/my-reservation');
 }
 
-    // =========================
-    // USER LIHAT RESERVASI SENDIRI
-    // =========================
+// USER LIHAT RESERVASI SENDIRI
 public function myReservation()
 {
     if (!session()->get('logged_in')) {
         return redirect()->to('/login');
     }
 
-    /*
-    =====================================
-    JOIN DENGAN FACILITIES
-    =====================================
-    */
-
+// JOIN DENGAN FACILITIES
     $reservations =
         $this->reservationModel
 
@@ -210,16 +186,13 @@ public function myReservation()
 
             ->findAll();
 
-
     $data['reservations'] =
         $reservations;
 
     return view('reservation/my_reservation', $data);
 }
 
-    // =========================
 // ADMIN UPDATE STATUS RESERVASI
-// =========================
 public function updateStatus($id, $status)
 {
     if (session()->get('role') != 'admin') {
@@ -228,20 +201,15 @@ public function updateStatus($id, $status)
 
     $facilityModel = new FacilityModel();
 
-    // ambil data reservasi
+// ambil data reservasi
     $reservation = $this->reservationModel->find($id);
 
-    // update status reservasi
+// update status reservasi
     $this->reservationModel->update($id, [
         'status' => $status
     ]);
 
-    /*
-    ========================================
-    UPDATE STATUS FASILITAS
-    ========================================
-    */
-
+// UPDATE STATUS FASILITAS
     if ($status == 'Approved') {
 
         $facilityModel->update(
@@ -265,24 +233,21 @@ public function updateStatus($id, $status)
     return redirect()->to('/reservations');
 }
 
-// =========================
 // FORM RESERVASI USER
-// =========================
-
 public function create($facility_id)
 {
-    // guest tidak boleh reservasi
+// guest tidak boleh reservasi
     if (session()->get('role') == 'guest') {
         return redirect()->to('/guest/dashboard');
     }
 
-    // load model fasilitas
+// load model fasilitas
     $facilityModel = new \App\Models\FacilityModel();
 
-    // ambil data fasilitas
+// ambil data fasilitas
     $facility = $facilityModel->find($facility_id);
 
-    // kirim ke view
+// kirim ke view
     $data = [
 
         'facility_id' => $facility_id,
