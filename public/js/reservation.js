@@ -27,15 +27,12 @@ function calculatePrice()
         let diffDays =
             (diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-
         let total = 0;
 
-
-        /*
-        KAMAR PUTRA / PUTRI
-        hitung per bulan
-        */
-
+/*
+KAMAR PUTRA / PUTRI
+hitung per bulan
+*/
         if(category === 'Kamar Putra'
            || category === 'Kamar Putri')
         {
@@ -45,11 +42,10 @@ function calculatePrice()
             total = months * price;
         }
 
-        /*
-        KAMAR TAMU / PARKIR
-        hitung per hari
-        */
-
+/*
+KAMAR TAMU / PARKIR
+hitung per hari
+*/
         else
         {
             total = diffDays * price;
