@@ -94,7 +94,7 @@ $existingReservation =
 
     ->orWhere('status', 'Approved')
 
-    ->orWhere('status', 'Selesai')
+
 
 ->groupEnd()
 
