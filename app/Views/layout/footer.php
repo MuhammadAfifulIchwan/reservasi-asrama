@@ -15,13 +15,13 @@
     <!-- ID dan nama fungsi JS TIDAK diubah, supaya       -->
     <!-- ChatbotController.php tetap terhubung normal     -->
     <!-- ============================================= -->
-    <div id="chatToggleBtn" style="position:fixed; bottom:20px; right:20px; z-index:1000;">
+    <!-- <div id="chatToggleBtn" style="position:fixed; bottom:20px; right:20px; z-index:1000;">
         <button class="btn btn-primary rounded-circle shadow"
                 style="width:60px;height:60px; font-size:22px;"
                 onclick="toggleChat()">
             <i class="bi bi-chat-dots-fill"></i>
         </button>
-    </div>
+    </div> -->
 
     <div id="chatBox" style="display:none; position:fixed; bottom:90px; right:20px; width:320px; height:420px; z-index:1000; border-radius:16px; overflow:hidden;" class="card shadow">
         <div class="card-header text-white" style="background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));">
