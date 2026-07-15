@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 namespace App\Controllers;
 
@@ -100,4 +100,4 @@ $systemPrompt = "Kamu adalah asisten virtual Sistem Reservasi Asrama Natuna. "
 
         return $this->response->setJSON(['reply' => $reply]);
     }
-}
+} -->

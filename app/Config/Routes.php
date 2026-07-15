@@ -68,5 +68,5 @@ $routes->post('api/users', 'API\UserApiController::create');
 $routes->put('api/users/(:num)', 'API\UserApiController::update/$1');
 $routes->delete('api/users/(:num)', 'API\UserApiController::delete/$1');
 
-// CHATBOT AI
-$routes->post('chatbot/ask', 'ChatbotController::ask');
+// // CHATBOT AI
+// $routes->post('chatbot/ask', 'ChatbotController::ask');
