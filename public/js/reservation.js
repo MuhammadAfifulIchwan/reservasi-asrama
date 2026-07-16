@@ -1,4 +1,4 @@
-
+// penghitungan pembayaran
 function calculatePrice()
 {
     let startDate =
